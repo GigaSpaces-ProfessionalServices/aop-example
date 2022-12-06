@@ -6,18 +6,24 @@
 
     <groupId>com.gigaspaces.demo</groupId>
     <artifactId>aop-example</artifactId>
+    <name>aop-example</name>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>feeder</module>
-        <module>aop</module>
+        <module>space</module>
         <module>common</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <gigaspaces.version>16.2.1</gigaspaces.version>
+        <spring.version>5.3.22</spring.version>
+        <!-- https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
+        <!-- per documentation 1.9.2 is compatible with Java 11 -->
+        <aspect.version>1.9.2</aspect.version>
     </properties>
 
     <repositories>
@@ -31,28 +37,28 @@
         <dependency>
             <groupId>org.gigaspaces</groupId>
             <artifactId>xap-openspaces</artifactId>
-            <version>12.1.1</version>
+            <version>${gigaspaces.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>4.1.1.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.8.13</version>
+            <version>${aspect.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.8.13</version>
+            <version>${aspect.version}</version>
         </dependency>
     </dependencies>
 
