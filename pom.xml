@@ -10,20 +10,21 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>feeder</module>
+        <module>declarative</module>
         <module>space</module>
         <module>common</module>
+        <module>programmatic</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gigaspaces.version>16.2.1</gigaspaces.version>
-        <spring.version>5.3.22</spring.version>
+        <gigaspaces.version>16.4.5</gigaspaces.version>
+        <spring.version>5.3.39</spring.version>
         <!-- https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
-        <!-- per documentation 1.9.2 is compatible with Java 11 -->
-        <aspect.version>1.9.2</aspect.version>
+        <!-- version pinned to match what Spring Framework 5.3.39 itself builds against; also the last AspectJ release whose compiler still runs on JDK 8 -->
+        <aspect.version>1.9.7</aspect.version>
     </properties>
 
     <repositories>

@@ -30,8 +30,9 @@ public class ClientReadProfiler {
      * template or SQLQuery
      * readModifiers
      *
-     * The same advice/profiler can be used because the arguments to read/
-     * readMultiple/readIfExists/readById/readByIds are very similar.
+     * The same advice/profiler can be used across all GigaSpace data operations
+     * (read*, write*, take*, change*, count, clear, ...) because in every case the
+     * first argument is the template/query/entry/class being operated on.
      */
     public Object profile(ProceedingJoinPoint call) throws Throwable {
 
