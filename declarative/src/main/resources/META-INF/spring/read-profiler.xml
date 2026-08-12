@@ -23,12 +23,21 @@
         <property name="name" value="clientReadProfiler" />
     </bean>
 
-    <!-- the same advice/profiler can be used because the arguments to read, readMultiple, readById, readIfExists are very similar. -->
+    <!--
+        Profiles every GigaSpace data-operation call (read*, write*, take*, change*, count, clear,
+        aggregate, iterator, execute, asyncLoad, ...). Accessors/getters (get*, is*, set*, new*) are
+        excluded: they're config lookups, not API calls, and getName() is invoked by the advice
+        itself (see ClientReadProfiler.profile), so including it would recurse infinitely.
+    -->
     <aop:config>
         <aop:aspect ref="clientReadProfiler">
 
             <aop:pointcut id="clientReadProfilerPointcut"
-                          expression="execution(* org.openspaces.core.GigaSpace.read*(..))" />
+                          expression="execution(* org.openspaces.core.GigaSpace.*(..))
+                                       and !execution(* org.openspaces.core.GigaSpace.get*(..))
+                                       and !execution(* org.openspaces.core.GigaSpace.is*(..))
+                                       and !execution(* org.openspaces.core.GigaSpace.set*(..))
+                                       and !execution(* org.openspaces.core.GigaSpace.new*(..))" />
 
             <aop:around pointcut-ref="clientReadProfilerPointcut"
                         method="profile" />

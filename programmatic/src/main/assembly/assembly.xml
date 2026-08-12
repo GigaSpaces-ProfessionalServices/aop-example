@@ -1,0 +1,31 @@
+<assembly>
+    <id>assemble-programmatic</id>
+    <formats>
+        <format>jar</format>
+        <format>dir</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>target/classes</directory>
+            <lineEnding>keep</lineEnding>
+            <outputDirectory>./</outputDirectory>
+            <includes>
+                <include>**/**</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <!--
+            Unlike declarative's assembly.xml, this bundles every transitive dependency:
+            declarative runs inside a GSC that already provides the XAP platform classpath
+            on its own, but this module runs as a plain standalone "java" process with
+            no such platform classpath to lean on, so it needs a fully self-contained lib/.
+        -->
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+</assembly>
